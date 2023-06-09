@@ -28,16 +28,31 @@ void queue_int_delete(queue_int **_q) {
 }
 
 int queue_int_empty(queue_int *q) {
-    return 0;
+    return q->size == 0;
 }
 
 int queue_int_full(queue_int *q) {
-    return 0;
+    return q->size == q->capacity;
 }
 
 void queue_int_put(queue_int *q, int value) {
+    q->data[q->size] = value;
+    if (q->end == (q->capacity-1)){
+        q->end = 0;
+    }
+    else{
+        q->end++;
+    }
+    q->size++;
 }
 
 int queue_int_get(queue_int *q) {
-    return 0;
+    q->size--;
+    if (q->begin == (q->capacity-1)){
+        q->begin = 0;
+    }
+    else{
+        q->begin++;
+    }
+    return q->data[q->begin];
 }

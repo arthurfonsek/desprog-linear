@@ -24,16 +24,31 @@ void stack_int_delete(stack_int **_s) {
 }
 
 int stack_int_empty(stack_int *s) {
+    if (s->size == 0){
+        return 1;
+    }
     return 0;
 }
 
 int stack_int_full(stack_int *s) {
+    if (s->size == capacity){
+        return 1;
+    }
     return 0;
 }
 
 void stack_int_push(stack_int *s, int value) {
+    s->data[s->size] = value; // escreve o novo valor no novo topo
+    s->size++;                // move o topo para a direita (sobe)
+
+    //LEMBRAR Q SIZE É +1 DO ULTIMO ELEMENTO
+    // CAPACITY TBM É +1 DO ULTIMO ELEMENTO
+
+    //LEMBRAR A IDEIA DE COBERTURA E ASSOCIAR COM PONTEIRO
+    //(ONDE TA APONTANDO)
 }
 
 int stack_int_pop(stack_int *s) {
-    return 0;
+    s->size--;               // move o topo para a esquerda (desce)
+    return s->data[s->size]; // devolve o valor do topo atual
 }
