@@ -52,3 +52,21 @@ int stack_int_pop(stack_int *s) {
     s->size--;               // move o topo para a esquerda (desce)
     return s->data[s->size]; // devolve o valor do topo atual
 }
+
+int stack_int_genpop(stack_int *s, int index){
+    int value = s->data[index];
+    s->size--;
+    for (int i = index; i < s->size; i++){
+        s->data[i] = s->data[i+1]    ;
+    }
+    return value;
+}
+
+void stack_int_push(stack_int *s, int value, int index) {
+    int i;
+    for (i = s->size; i > s->size - index; i--) {
+        s->data[i] = s->data[i - 1];
+    }
+    s->data[i] = value;
+    s->size++;
+}
